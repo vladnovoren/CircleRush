@@ -27,14 +27,20 @@ void initialize()
 {
 }
 
+void PrintScores() {
+  std::cout << "SCORE: " << EntityManager::GetInstance().Score() << '\n';
+}
+
 // this function is called to update game data,
 // dt - time elapsed since the previous update (in seconds)
 void act(float dt)
 {
   static bool last_pressed = false;
   (void)dt;
-  if (is_key_pressed(VK_ESCAPE))
+  if (is_key_pressed(VK_ESCAPE)) {
+    PrintScores();
     schedule_quit_game();
+  }
   if (is_key_pressed(VK_SPACE)) {
     last_pressed = true;
   }
@@ -45,7 +51,7 @@ void act(float dt)
     last_pressed = false;
   }
   if (PhysicalSystem::GetInstance().Step(dt)) {
-    std::cout << "SCORE: " << EntityManager::GetInstance().Score() << '\n';
+    PrintScores();
     schedule_quit_game();
   }
 }

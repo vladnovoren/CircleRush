@@ -4,11 +4,12 @@
 #include "BaseComponent.hpp"
 #include <Vector2.hpp>
 
-class LinearVelocity : public BaseComponent, public Vector2f {
+class LinearVelocity : public BaseComponent {
  public:
   LinearVelocity() = default;
   ~LinearVelocity() = default;
 
+  Vector2f value_;
 };
 
 #endif /* LinearVelocity.hpp */

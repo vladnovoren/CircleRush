@@ -4,11 +4,12 @@
 #include "BaseComponent.hpp"
 #include "Vector2.hpp"
 
-class RotationCenter : public BaseComponent, public Vector2f {
+class RotationCenter : public BaseComponent {
  public:
   RotationCenter() = default;
   ~RotationCenter() = default;
 
+  Vector2f value_;
 };
 
 #endif /* RotationCenter.hpp */

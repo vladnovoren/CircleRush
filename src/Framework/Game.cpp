@@ -4,7 +4,8 @@
 #include <stdlib.h>
 #include "CircleGraphicsComponent.hpp"
 #include <memory.h>
-#include "World.hpp"
+#include "EntityManager.hpp"
+#include "PhysicalSystem.hpp"
 #include <stdio.h>
 
 //
@@ -28,9 +29,16 @@ void initialize()
 // dt - time elapsed since the previous update (in seconds)
 void act(float dt)
 {
+  (void)dt;
   if (is_key_pressed(VK_ESCAPE))
     schedule_quit_game();
-
+  if (is_key_pressed(VK_SPACE)) {
+    PhysicalSystem::GetInstance().ChangeDir();
+  }
+  if (PhysicalSystem::GetInstance().Step(dt)) {
+    std::cout << "SCORE: " << EntityManager::GetInstance().Score() << '\n';
+    schedule_quit_game();
+  }
 }
 
 const int START_X = 500;
@@ -43,9 +51,7 @@ void draw()
   // clear backbuffer
   memset(buffer, 0, SCREEN_HEIGHT * SCREEN_WIDTH * sizeof(uint32_t));
 
-  CircleGraphicsComponent circle(FloatCircle(Vector2f(100, 100), 50), ColorBGRA(255, 0, 0, 0));
-
-  circle.Draw();
+  EntityManager::GetInstance().Draw();
 }
 
 // free game data in this function

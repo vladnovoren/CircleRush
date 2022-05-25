@@ -23,3 +23,15 @@ Vector2i CoordSystem::RealToPixelPoint(const Vector2f &point) const {
 IntCircle CoordSystem::RealToPixelCircle(const FloatCircle& circle) const {
   return IntCircle(RealToPixelPoint(circle.center_), RealToPixelLen(circle.radius_));
 }
+
+bool CoordSystem::IsCircleInside(const FloatCircle& circle) const {
+  IntCircle int_circle = RealToPixelCircle(circle);
+
+  Vector2i r_r_v(int_circle.radius_, int_circle.radius_);
+
+  Vector2i l_u = int_circle.center_ - r_r_v;
+  Vector2i r_d = int_circle.center_ + r_r_v;
+
+  return l_u.x_ > x_ranges_.min_ && r_d.x_ < x_ranges_.max_ &&
+         l_u.y_ > y_ranges_.min_ && r_d.y_ < y_ranges_.max_;
+}

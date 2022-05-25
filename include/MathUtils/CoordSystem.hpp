@@ -16,6 +16,8 @@ struct CoordSystem {
   Vector2i  RealToPixelPoint(const Vector2f& point) const;
   IntCircle RealToPixelCircle(const FloatCircle& circle) const;
 
+  bool IsCircleInside(const FloatCircle& circle) const;
+
   Vector2i    p_center_;
 
   IntRanges x_ranges_;

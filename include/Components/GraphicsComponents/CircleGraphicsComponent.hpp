@@ -13,7 +13,6 @@ class CircleGraphicsComponent : public BaseGraphicsComponent {
 
   void Draw() override;
 
- private:
   FloatCircle circle_;
   ColorBGRA color_;
 

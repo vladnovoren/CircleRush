@@ -3,6 +3,7 @@ project(game)
 find_package(X11 REQUIRED)
 set(CMAKE_CONFIGURATION_TYPES "Debug" "Release")
 
+
 set(FRAMEWORK_SRC
   src/Framework/Engine.cpp
   src/Framework/Game.cpp
@@ -16,8 +17,6 @@ set(GRAPHICS_SYSTEM_SRC
 
 set(ECS_SRC
   src/Components/BaseComponent.cpp
-  src/Components/PhysicalShapes/BasePhysicalShape.cpp
-  src/Components/PhysicalShapes/CirclePhysicalShape.cpp
 
   src/Components/GraphicsComponents/BaseGraphicsComponent.cpp
   src/Components/GraphicsComponents/CircleGraphicsComponent.cpp
@@ -26,6 +25,7 @@ set(ECS_SRC
 
   src/Systems/PhysicalSystem.cpp
   src/Systems/World.cpp
+  src/Systems/EntityManager.cpp
 )
 
 MACRO(HEADER_DIRECTORIES return_list)

@@ -5,26 +5,32 @@
 #include "LinearVelocity.hpp"
 #include "AngularVelocity.hpp"
 #include "RotationCenter.hpp"
-#include "BasePhysicalShape.hpp"
 #include "BaseComponent.hpp"
+#include "Radius.hpp"
+#include "CircleGraphicsComponent.hpp"
 #include <vector>
 
 class Entity {
  public:
-  BaseComponent* GetComponent(const ComponentType type) const;
+  Entity();
+  ~Entity();
 
-  Position* GetPosition() const;
+  BaseComponent** GetComponent(const ComponentType type);
 
-  LinearVelocity* GetLinearVelocity() const;
+  Position** GetPosition();
 
-  AngularVelocity* GetAngularVelocity() const;
+  LinearVelocity** GetLinearVelocity();
 
-  RotationCenter* GetRotationCenter() const;
+  AngularVelocity** GetAngularVelocity();
 
-  BasePhysicalShape* GetBasePhysicalShape() const;
+  RotationCenter** GetRotationCenter();
+
+  Radius** GetRadius();
+
+  CircleGraphicsComponent** GetGraphicsComponent();
 
  private:
-  BaseComponent* components_[static_cast<size_t>(ComponentType::COMPONENTS_CNT)];
+  BaseComponent* components_[static_cast<size_t>(ComponentType::COMPONENTS_CNT)] = {};
 
 };
 

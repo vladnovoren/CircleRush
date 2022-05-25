@@ -5,11 +5,12 @@
 #include "NumericalType.hpp"
 #include "Vector2.hpp"
 
-class AngularVelocity : public BaseComponent, public NumericalType<float> {
+class AngularVelocity : public BaseComponent {
  public:
   AngularVelocity() = default;
   ~AngularVelocity() = default;
 
+  float value_;
 };
 
 #endif /* AngularVelocity.hpp */

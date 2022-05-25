@@ -8,6 +8,8 @@
 #include "PhysicalSystem.hpp"
 #include <stdio.h>
 
+
+
 //
 //  You are free to modify this file
 //
@@ -29,11 +31,18 @@ void initialize()
 // dt - time elapsed since the previous update (in seconds)
 void act(float dt)
 {
+  static bool last_pressed = false;
   (void)dt;
   if (is_key_pressed(VK_ESCAPE))
     schedule_quit_game();
   if (is_key_pressed(VK_SPACE)) {
-    PhysicalSystem::GetInstance().ChangeDir();
+    last_pressed = true;
+  }
+  if (!is_key_pressed(VK_SPACE)) {
+    if (last_pressed) {
+      PhysicalSystem::GetInstance().ChangeDir();
+    }
+    last_pressed = false;
   }
   if (PhysicalSystem::GetInstance().Step(dt)) {
     std::cout << "SCORE: " << EntityManager::GetInstance().Score() << '\n';
